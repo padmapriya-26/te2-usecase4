@@ -18,7 +18,7 @@ pipeline {
 
     stage('Install DevOps Tools') {
       steps {
-        sh 'ansible-playbook -i ansible/inv ansible/install tools.yaml'
+        sh 'ansible-playbook -i ansible/inv ansible/install-tools.yaml'
       }
     }
   }
