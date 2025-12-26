@@ -18,12 +18,12 @@
         name: docker
         state: started
         enabled: yes
-    - name: start sonarqube
+    - name: start nginx
       yum: 
-       name: sonarqube
+       name: nginx
        state: present
-    - name: Start sonarqube
+    - name: Start nginx
       service: 
-        name: sonarqube
+        name: nginx
         state: started
         enabled: yes
