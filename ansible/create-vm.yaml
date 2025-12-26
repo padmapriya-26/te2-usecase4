@@ -1,0 +1,25 @@
+- name: create an vm
+  hosts: all
+  become: yes
+  tasks:
+   - name: create vm
+     gcp_compute_instance:
+      name: vm1
+      machine_type: e2-small
+      zone: us-east1-b
+      project: sinuous-voice-476704-d4
+      auth_kind: serviceaccount
+      service_account_file: /var/lib/jenkins/key.json
+      disks:
+        - auto_delete: yes
+          boot: yes
+          initialize_params:
+            source_image: projects/sinuous-voice-476704-d4/global/images/family/centos-stream-9
+          network_interfaces:
+          - network: default
+            access_configs:
+              - name: External NAT
+          - name: Add VM IP to inventory
+            add_host:
+              name: "{{ vm_output.instance.networkInterfaces[0].accessConfigs[0].natIP }}"
+              groups: gcp_vms
