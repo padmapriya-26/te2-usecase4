@@ -5,7 +5,8 @@ pipeline {
 
     stage('Checkout Code') {
       steps {
-        git 'https://github.com/padmapriya-26/te2-usecase4.git'
+        git branch: 'main',
+        url: 'https://github.com/padmapriya-26/te2-usecase4.git'
       }
     }
 
